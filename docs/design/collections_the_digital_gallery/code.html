@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Digital Gallery | Collections</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#596157",
+              "surface-container": "#ebeeef",
+              "inverse-primary": "#ffffff",
+              "on-secondary": "#fff8ef",
+              "primary-fixed": "#e5e2e1",
+              "outline": "#757c7d",
+              "error-dim": "#4e0309",
+              "surface-container-highest": "#dde4e5",
+              "outline-variant": "#adb3b4",
+              "surface-dim": "#d4dbdd",
+              "primary": "#5f5e5e",
+              "on-tertiary-fixed-variant": "#60685e",
+              "on-surface-variant": "#5a6061",
+              "on-background": "#2d3435",
+              "surface-container-high": "#e4e9ea",
+              "on-secondary-fixed-variant": "#635b49",
+              "tertiary-fixed": "#eef6e8",
+              "inverse-surface": "#0c0f0f",
+              "surface-bright": "#f9f9f9",
+              "tertiary-container": "#eef6e8",
+              "on-secondary-container": "#595140",
+              "primary-fixed-dim": "#d6d4d3",
+              "tertiary-fixed-dim": "#e0e8da",
+              "secondary-container": "#ede1ca",
+              "on-secondary-fixed": "#463f2e",
+              "on-tertiary-container": "#565e53",
+              "on-primary-container": "#525151",
+              "surface-container-low": "#f2f4f4",
+              "surface-variant": "#dde4e5",
+              "error": "#9f403d",
+              "secondary-fixed-dim": "#dfd3bd",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#f4fbed",
+              "surface": "#f9f9f9",
+              "inverse-on-surface": "#9c9d9d",
+              "on-surface": "#2d3435",
+              "secondary": "#665e4c",
+              "on-primary": "#faf7f6",
+              "primary-dim": "#535252",
+              "tertiary-dim": "#4d554b",
+              "primary-container": "#e5e2e1",
+              "surface-tint": "#5f5e5e",
+              "error-container": "#fe8983",
+              "on-primary-fixed": "#403f3f",
+              "on-error-container": "#752121",
+              "on-tertiary-fixed": "#444c42",
+              "secondary-dim": "#5a5241",
+              "background": "#f9f9f9",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "on-error": "#fff7f6",
+              "secondary-fixed": "#ede1ca"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #2d3435;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-secondary/30">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f9f9f9]/70 backdrop-blur-xl transition-all">
+<nav class="flex justify-between items-center w-full px-12 py-6">
+<div class="flex items-center gap-12">
+<a class="font-headline text-2xl tracking-tighter text-[#2d3435]" href="#">The Digital Gallery</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-noto-serif tracking-tight text-lg text-[#5a6061] hover:text-[#2d3435] transition-colors" href="#">Exhibitions</a>
+<a class="font-noto-serif tracking-tight text-lg text-[#665e4c] border-b border-[#665e4c] pb-1" href="#">Artists</a>
+<a class="font-noto-serif tracking-tight text-lg text-[#5a6061] hover:text-[#2d3435] transition-colors" href="#">Archive</a>
+<a class="font-noto-serif tracking-tight text-lg text-[#5a6061] hover:text-[#2d3435] transition-colors" href="#">Journal</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="p-2 hover:bg-[#f2f4f4]/50 transition-all">
+<span class="material-symbols-outlined text-[#2d3435]" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="p-2 hover:bg-[#f2f4f4]/50 transition-all">
+<span class="material-symbols-outlined text-[#2d3435]" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-[1600px] mx-auto">
+<!-- Hero Section -->
+<section class="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-3xl">
+<h1 class="font-headline text-5xl md:text-7xl tracking-tighter text-on-background mb-6 leading-tight">
+                    Curated <br/>Collections
+                </h1>
+<p class="font-body text-xl text-on-surface-variant leading-relaxed font-light">
+                    A meticulous selection of movements, eras, and perspectives. Each collection is a digital dialogue between the observer and the observed.
+                </p>
+</div>
+<div class="flex items-center gap-4 text-sm font-label uppercase tracking-widest text-on-surface-variant border-b border-outline/20 pb-2">
+<span>Displaying 12 Categories</span>
+<span class="material-symbols-outlined text-xs" data-icon="arrow_downward">arrow_downward</span>
+</div>
+</section>
+<!-- Collections Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<!-- Modernism: Large Featured Card -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="aspect-[16/9] bg-surface-container-low overflow-hidden relative">
+<img alt="Modernist architecture abstract" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist modernist interior with harsh sunlight casting geometric shadows on a white wall and a single black chair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFIdz_vMzJdsMhHTyZZhJfa2aI7utEOxuu1PeVb9cFCuE-8xTnEjPH94PRdWe8YR5SJUP21AdUVfZKoxjqtLaro41-Rxz0uAHd_1aKUAsWoXGM6JZvnXjSvLtKDW5VR7-2iEcFM7uLncppMB-tKVxbjgS5R43Upe5p3axJOI5fpXeLNX3nrJshMXGOO2QyjUlBtyEA1xTiVi2ZkDMl4c_nXWk9Qj--6BENjo2buaEtHxYknlDQEfVoQHZjm9rTgNrs-roCy35ZWYXx"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h2 class="font-headline text-3xl mb-2">Modernism</h2>
+<p class="font-body text-on-surface-variant max-w-md">Exploring the clarity of form and function through the lens of early 20th-century aesthetic revolution.</p>
+</div>
+<span class="font-label text-sm uppercase tracking-widest text-secondary pt-2">84 Artworks</span>
+</div>
+</div>
+<!-- Street Photography -->
+<div class="md:col-span-4 group cursor-pointer pt-0 md:pt-24">
+<div class="aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img alt="Street photography silhouettes" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Cinematic street photography scene of Tokyo at night with neon lights reflecting on rain-slicked pavement and blurred silhouettes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO59hH_WK0ZKrpPJTu8kA2M-y94wT8-t0w6Ul5vIBgPUNGyF66o81R-D89pHvpETFu90bVqTKg4a74hc0tiOWyHsF5b-LBgnlmsYdylDg8FmYnpz4qcR0bgm5XD_oOq2Gk2p2dXwe3FTexmTj7s9tKHlSBKnmPc4hWbZmDotA6dV8IFMARJSrjTaR3WieY4-JE9koMIee09b9wlx1vNICYN2mcvG_OCOyHj9ZrERUfPIFNFM_GhLZapA2dtZTSkFbIbZGk9frJgAOI"/>
+</div>
+<div class="mt-6">
+<h2 class="font-headline text-2xl mb-2">Street Photography</h2>
+<p class="font-body text-sm text-on-surface-variant mb-4 uppercase tracking-widest">Unscripted Moments</p>
+<a class="font-headline text-on-surface border-b border-secondary/40 pb-1 hover:border-secondary transition-colors inline-block" href="#">Explore Gallery</a>
+</div>
+</div>
+<!-- Abstract Sculptures -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img alt="Abstract marble sculpture" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up of a smooth white marble abstract sculpture with flowing organic curves against a soft gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG1tpXwvU6aFbYbU3HMv9_OvD3YaYORhOaOAKFBx4xaRKB-PMZWDW-x-1hoytn2CRZNJnAhqzFSOSE3HJtb0riqtsPc3Y-_XGX5GukZq0HBac01-z-fEaUnXetyWyu_MmQkvdkggiOQGUcxuRRXLgmygKwOrICUVohE4TtZ7NlLk1eEmMgoYLI768ReSvwb6e8ojwRh-GhUMy6sJNoSjV4n5KkhYH7vP1I5odb7y0vDK3LuvpKgD1efgEcrHUkPPeE-7D7UKhgzsHt"/>
+</div>
+<div class="mt-6">
+<h2 class="font-headline text-2xl mb-2">Abstract Sculptures</h2>
+<p class="font-body text-sm text-on-surface-variant mb-4 uppercase tracking-widest">Form &amp; Volume</p>
+<a class="font-headline text-on-surface border-b border-secondary/40 pb-1 hover:border-secondary transition-colors inline-block" href="#">View Collection</a>
+</div>
+</div>
+<!-- Film Noir: Large Horizontal -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="aspect-[21/9] bg-surface-container-low overflow-hidden">
+<img alt="Moody black and white cinema" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="High contrast black and white photograph of a lonely figure walking down a misty cobblestone alleyway at night with a single streetlamp" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyLziiYjrXOs6uhy9LNdZH66KAmxXhweOlJgzlhu1bI-0bMpidOHmjtheG5oYv6VsM_8jtTL3cIkPsZLn4BdBCAIdF2qYtk84BpmhVp9nz4ROtJvnlpMG6FGaT74NHncc0O6xR6PXFXw2TuxQcDduKx-N27tw445x9FsDK0Cgz-Tb7RMCo0LHoBCgYl5qxjtNRbhhzh18Gc5YG5N06yOxl6uDjl6Xpjhv90mf8-oPu2nK4gJg1z0sciW8IRtXFvdhIZO9E8qlb2NSc"/>
+</div>
+<div class="mt-6 flex justify-between items-end">
+<div>
+<h2 class="font-headline text-3xl mb-2">Film Noir</h2>
+<p class="font-body text-on-surface-variant max-w-lg">A study in shadow, contrast, and the dramatic narratives of black and white cinematography.</p>
+</div>
+<div class="hidden md:block">
+<button class="px-8 py-3 bg-primary text-on-primary font-body uppercase text-xs tracking-[0.2em] hover:bg-primary-dim transition-colors">Enter Archive</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Categories (Minimalist Grid) -->
+<section class="mt-32">
+<div class="flex items-center gap-8 mb-12">
+<h3 class="font-headline text-2xl text-on-surface">Digital Mediums</h3>
+<div class="h-px bg-outline/10 flex-grow"></div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+<!-- Category 01 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low mb-6 p-6">
+<img alt="Digital abstract" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Vibrant digital 3D render of soft flowing waves in ethereal pastel colors with high gloss texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4E7npaqsQOZhA8jvBOr6QpFrNbI5ZuvEknAEakdJvjxX9wxPO-jh007WStaMI4wQkf53cHjQm6WWQk7SCo3EwlU2SPzXJ1VBh2xrOCAE4EjGODwWqw-_BG1sRR-aLYxRqS-klEvjTs5WJNyh_TIVG-TKT0_4cToN1wdlStDVD1-7SnmeS2q6ypDvUJ6eLoBBwCyz5qpXxWY0Wg14XnygBc_-qkkK-2OaPv6tFB4XOdne4NutxRTx08JNGd4JV3DoJlei_W3lxJpGs"/>
+</div>
+<div class="flex justify-between items-baseline">
+<h4 class="font-headline text-xl">Generative Art</h4>
+<span class="text-xs font-label text-on-surface-variant">12 Series</span>
+</div>
+</div>
+<!-- Category 02 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low mb-6 p-6">
+<img alt="Expressionist painting" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Bold expressionist oil painting with thick impasto brushstrokes and a palette of deep blues and vibrant oranges" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjpr-q1on6_ytCPRyNltvgNzKKqzcaycdhXmhSNFLAExk6g62ziJt0IhizTPGhZPUquqWWzaVWD9P0HreI4NrEBybwWLW6umpEfk5LmbmoyCCxXxiXrv-lDeH9uVjkyaehtaxCgGtRC0ZMuMsCeg-WPm46G2fQDi0g9K2SJJUk5CKXKIZyfr15lmcygXj5vRM3fpVCGZAL9y3CpneZ85r2ThCCodeLwcqk_pSZBc5AHEEVe7YLhnGnVHsTFdUwCWHxlgVdkLKm_QjB"/>
+</div>
+<div class="flex justify-between items-baseline">
+<h4 class="font-headline text-xl">Neo-Expressionism</h4>
+<span class="text-xs font-label text-on-surface-variant">28 Series</span>
+</div>
+</div>
+<!-- Category 03 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low mb-6 p-6">
+<img alt="Botanical illustration" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Exquisite botanical illustration of rare flora on aged parchment paper with delicate pencil details and light watercolor washes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz3-SoHkk6a2WX-y6Ip-O7Jb1kiletlr0U58CPz3ps25i8hJVKHghL79o83X2At8jIrB-M3of7eUrqsCBrjjXcdJFSkjlYioZH6quvVEiWvvjyK6GZrwT8vqx8Ho-iNXbLy8nLYnBWBpiWs8t8nk_GN776g46AJSM5Ev26fqzokNL08WcaXl7ezMw1calt1wcApDbU7LafkwKPZ3qMyjQfA8jUCBJmIxOH7_OgjyMHbnFfZw2LzcjjoVqvB3c2cKrH403Pprad91Dh"/>
+</div>
+<div class="flex justify-between items-baseline">
+<h4 class="font-headline text-xl">Botanical Studies</h4>
+<span class="text-xs font-label text-on-surface-variant">45 Series</span>
+</div>
+</div>
+<!-- Category 04 -->
+<div class="group cursor-pointer">
+<div class="aspect-square bg-surface-container-low mb-6 p-6">
+<img alt="Minimalist landscape" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Minimalist landscape photography of a single snow-covered tree in a vast white field under a pale gray sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa4ISLA2WZHuTKl4BiZYA_2m1KpvrPjPWlcZwfs4FO16bxd_cxuzlMQlP9fMHksNaFSZJSVaUjGzwjZWB8cOi4-gEX3mqgXCk7xKgUk2AJrjDCkz1h1kjV9AyQocmCdOYSiq02R4YWyH8eDGyz1kDRgXm8mQVxPOQNIWdcllFr5zYKYc8F0la_3MPsTVUwFxgAO1llTvaOpGRcWFm2MQRLWQpYTgm0qS_RBvoLQtKHfCNiRy4TcrRaAhZ7Ou4F-Hcwu05SevAP9Sil"/>
+</div>
+<div class="flex justify-between items-baseline">
+<h4 class="font-headline text-xl">Minimalist Vistas</h4>
+<span class="text-xs font-label text-on-surface-variant">19 Series</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Curator's Note -->
+<section class="mt-40 bg-surface-container-low p-12 md:p-24 relative overflow-hidden">
+<div class="relative z-10 max-w-2xl">
+<span class="font-label text-xs uppercase tracking-widest text-secondary mb-4 block">Curator's Newsletter</span>
+<h3 class="font-headline text-4xl mb-8 leading-tight">Receive weekly insights into new acquisitions and artist spotlights.</h3>
+<form class="flex flex-col md:flex-row gap-6">
+<input class="bg-transparent border-0 border-b border-outline/30 focus:ring-0 focus:border-secondary transition-colors py-3 px-0 w-full font-body text-lg placeholder:text-on-surface-variant/40" placeholder="Email Address" type="email"/>
+<button class="whitespace-nowrap font-label uppercase text-xs tracking-widest text-on-surface border border-on-surface px-10 py-4 hover:bg-on-surface hover:text-surface transition-all" type="submit">Subscribe</button>
+</form>
+</div>
+<!-- Aesthetic abstract shape -->
+<div class="absolute right-[-10%] bottom-[-20%] w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-20 px-12 border-t border-[#2d3435]/5 bg-[#f2f4f4]">
+<div class="flex flex-col md:flex-row justify-between items-start space-y-8 md:space-y-0 max-w-[1600px] mx-auto">
+<div class="space-y-6">
+<span class="font-noto-serif text-xl text-[#2d3435]">The Digital Gallery</span>
+<p class="font-manrope text-sm tracking-wide text-[#5a6061] max-w-xs">A curated platform for contemporary art, photography, and digital expression.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+<div class="flex flex-col space-y-4">
+<span class="font-manrope text-sm tracking-wide uppercase text-[#2d3435] font-bold">Discover</span>
+<a class="font-manrope text-sm tracking-wide uppercase text-[#5a6061] hover:text-[#2d3435] transition-colors duration-300" href="#">Exhibitions</a>
+<a class="font-manrope text-sm tracking-wide uppercase text-[#5a6061] hover:text-[#2d3435] transition-colors duration-300" href="#">Artists</a>
+<a class="font-manrope text-sm tracking-wide uppercase text-[#5a6061] hover:text-[#2d3435] transition-colors duration-300" href="#">Journal</a>
+</div>
+<div class="flex flex-col space-y-4">
+<span class="font-manrope text-sm tracking-wide uppercase text-[#2d3435] font-bold">Company</span>
+<a class="font-manrope text-sm tracking-wide uppercase text-[#5a6061] hover:text-[#2d3435] transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="font-manrope text-sm tracking-wide uppercase text-[#5a6061] hover:text-[#2d3435] transition-colors duration-300" href="#">Terms of Service</a>
+<a class="font-manrope text-sm tracking-wide uppercase text-[#5a6061] hover:text-[#2d3435] transition-colors duration-300" href="#">Contact Us</a>
+</div>
+<div class="flex flex-col space-y-4">
+<span class="font-manrope text-sm tracking-wide uppercase text-[#2d3435] font-bold">Social</span>
+<a class="font-manrope text-sm tracking-wide uppercase text-[#5a6061] hover:text-[#2d3435] transition-colors duration-300" href="#">Instagram</a>
+<a class="font-manrope text-sm tracking-wide uppercase text-[#5a6061] hover:text-[#2d3435] transition-colors duration-300" href="#">Twitter</a>
+</div>
+</div>
+</div>
+<div class="mt-20 flex flex-col md:flex-row justify-between items-center max-w-[1600px] mx-auto border-t border-on-surface/5 pt-8">
+<span class="font-manrope text-sm tracking-wide uppercase text-[#5a6061]">© 2024 The Digital Gallery. All rights reserved.</span>
+<div class="flex gap-4 mt-4 md:mt-0">
+<span class="material-symbols-outlined text-[#5a6061]" data-icon="language">language</span>
+<span class="font-manrope text-sm tracking-wide uppercase text-[#2d3435]">English (US)</span>
+</div>
+</div>
+</footer>
+</body></html>

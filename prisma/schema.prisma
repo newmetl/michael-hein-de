@@ -1,0 +1,53 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Album {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String?
+  coverImage  String?
+  sortOrder   Int       @default(0)
+  published   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  artworks    Artwork[]
+}
+
+model Artwork {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  width       String?
+  height      String?
+  depth       String?
+  dimensions  String?
+  medium      String?
+  createdDate String?
+  imagePath   String
+  thumbPath   String?
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(true)
+  albumId     String
+  album       Album    @relation(fields: [albumId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Page {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  title     String
+  content   String   @default("")
+  heroTitle String?
+  heroSubtitle String?
+  heroImage String?
+  updatedAt DateTime @updatedAt
+}

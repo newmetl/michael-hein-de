@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Digital Gallery | Curated Contemporary Art</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#596157",
+              "surface-container": "#ebeeef",
+              "inverse-primary": "#ffffff",
+              "on-secondary": "#fff8ef",
+              "primary-fixed": "#e5e2e1",
+              "outline": "#757c7d",
+              "error-dim": "#4e0309",
+              "surface-container-highest": "#dde4e5",
+              "outline-variant": "#adb3b4",
+              "surface-dim": "#d4dbdd",
+              "primary": "#5f5e5e",
+              "on-tertiary-fixed-variant": "#60685e",
+              "on-surface-variant": "#5a6061",
+              "on-background": "#2d3435",
+              "surface-container-high": "#e4e9ea",
+              "on-secondary-fixed-variant": "#635b49",
+              "tertiary-fixed": "#eef6e8",
+              "inverse-surface": "#0c0f0f",
+              "surface-bright": "#f9f9f9",
+              "tertiary-container": "#eef6e8",
+              "on-secondary-container": "#595140",
+              "primary-fixed-dim": "#d6d4d3",
+              "tertiary-fixed-dim": "#e0e8da",
+              "secondary-container": "#ede1ca",
+              "on-secondary-fixed": "#463f2e",
+              "on-tertiary-container": "#565e53",
+              "on-primary-container": "#525151",
+              "surface-container-low": "#f2f4f4",
+              "surface-variant": "#dde4e5",
+              "error": "#9f403d",
+              "secondary-fixed-dim": "#dfd3bd",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#f4fbed",
+              "surface": "#f9f9f9",
+              "inverse-on-surface": "#9c9d9d",
+              "on-surface": "#2d3435",
+              "secondary": "#665e4c",
+              "on-primary": "#faf7f6",
+              "primary-dim": "#535252",
+              "tertiary-dim": "#4d554b",
+              "primary-container": "#e5e2e1",
+              "surface-tint": "#5f5e5e",
+              "error-container": "#fe8983",
+              "on-primary-fixed": "#403f3f",
+              "on-error-container": "#752121",
+              "on-tertiary-fixed": "#444c42",
+              "secondary-dim": "#5a5241",
+              "background": "#f9f9f9",
+              "on-primary-fixed-variant": "#5c5b5b",
+              "on-error": "#fff7f6",
+              "secondary-fixed": "#ede1ca"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background-color: rgba(249, 249, 249, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .art-card-overlay {
+            background: linear-gradient(to top, rgba(45, 52, 53, 0.8) 0%, rgba(45, 52, 53, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .art-card:hover .art-card-overlay {
+            opacity: 1;
+        }
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 2.75rem;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        @media (min-width: 1280px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 2.75rem;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary/30">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav flex justify-between items-center px-12 py-6">
+<div class="flex items-center gap-12">
+<a class="font-headline text-2xl tracking-tighter text-on-surface" href="#">The Digital Gallery</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-noto-serif tracking-tight text-lg text-secondary border-b border-secondary pb-1" href="#">Exhibitions</a>
+<a class="font-noto-serif tracking-tight text-lg text-on-surface-variant hover:text-on-surface transition-colors" href="#">Artists</a>
+<a class="font-noto-serif tracking-tight text-lg text-on-surface-variant hover:text-on-surface transition-colors" href="#">Archive</a>
+<a class="font-noto-serif tracking-tight text-lg text-on-surface-variant hover:text-on-surface transition-colors" href="#">Journal</a>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<button class="p-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-on-surface" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-on-surface" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+<main class="pt-32 pb-24">
+<!-- Hero Section -->
+<header class="px-12 mb-24 max-w-7xl">
+<h1 class="font-headline text-5xl md:text-7xl tracking-tighter mb-8 leading-[1.1]">
+                A silent dialogue between <br/><span class="italic text-secondary">light and form.</span>
+</h1>
+<p class="font-body text-xl text-on-surface-variant max-w-2xl leading-relaxed">
+                Curating the world's most evocative digital art and photography. Our gallery provides a minimalist stage for voices that redefine the visual landscape.
+            </p>
+</header>
+<!-- Gallery Grid (Masonry) -->
+<section class="px-12">
+<div class="masonry-grid">
+<!-- Art Piece 1 -->
+<div class="masonry-item art-card group relative cursor-pointer">
+<div class="p-6 bg-surface-container-low">
+<img alt="Floral abstract painting" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Delicate abstract floral oil painting with muted earth tones, soft brushstrokes, and a minimalist composition on a textured canvas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEV7ys2c-sitpJlxapGhsNILSQsQzeqS0QxYJ4nQkgHI0Mr22uJJFtglz4SWg10cE6o6pIQ7_yy51e8OGKzmhrwoPkB4u_qOTLO6SpkawKz0RD1EuTxBAHkYXZ2hsMuiyXkaXlQH4vCKjtm4ZCd-DydDXQhoyl2WGlA8fWX5yjNanZvQw1ORDG8JqVRl0OwBpYhJ63dpjrWycjqpxTjyHEWPVlpVeirzr96M5g0-hERM27loObTHXAabMfIKqPpRj5vOG0fz8Vlowg"/>
+</div>
+<div class="art-card-overlay absolute inset-0 flex flex-col justify-end p-12 text-on-primary">
+<p class="font-headline text-2xl mb-1">Ephemeral Bloom</p>
+<p class="font-label text-sm uppercase tracking-widest opacity-80">Elena Rossi</p>
+</div>
+</div>
+<!-- Art Piece 2 -->
+<div class="masonry-item art-card group relative cursor-pointer">
+<div class="p-6 bg-surface-container-low">
+<img alt="Modern architecture detail" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="High-contrast architectural photography of a brutalist concrete building with sharp geometric shadows and a clear blue sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHi9c7bD4zVQDJVZAfrv-K-VBpVw_5AseCzt-g1BgqBYtBjacG5eLeR_5hLBV-ol1ZBly_Y9pW7acZR0IPAMq7fXUV-ct3X2l6qggWS-zho-2h54gweBe2EnE-JNDVf37dBwr0uXBtmpp-e0Mxf1tEamkAVwEor9oskcICId8QwYZk8x_uPkmE7mkET-yBc_Qy6IylJJzuy0X3F0768bHiACssV6VbhSutbrqPqYsepvsO1s8qrCtzxLIteaWWZkiibNK9zvVM9Nlc"/>
+</div>
+<div class="art-card-overlay absolute inset-0 flex flex-col justify-end p-12 text-on-primary">
+<p class="font-headline text-2xl mb-1">Structural Silence</p>
+<p class="font-label text-sm uppercase tracking-widest opacity-80">Marcus Vahn</p>
+</div>
+</div>
+<!-- Art Piece 3 -->
+<div class="masonry-item art-card group relative cursor-pointer">
+<div class="p-6 bg-surface-container-low">
+<img alt="Liquid abstract art" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Fluid art photography featuring swirling smoke patterns in shades of charcoal and silver against a deep black background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0m2AcmbHdq7o82o4M1OuMedWvf7l29Rg39O9ZL5JQYb6PLAr2wi8t8mWkjXplCcSSrJPJgjHa8OvpMpOPsj-XIWBaN92w0XNytEBb37aS351_aJfl5mesjMQS6_z4W0qFOPpijEScgInLfBaRwjfP4e0NhpJODjCJybzUusRGUarm1ZqGJy4SMAIQ4QowITDur31nuADCXHnq69raKHfn5_avs0HakUVYNl_R8tjUxuJtC__XI3gLx8Q5m3rs1DowiO240Y4ojm82"/>
+</div>
+<div class="art-card-overlay absolute inset-0 flex flex-col justify-end p-12 text-on-primary">
+<p class="font-headline text-2xl mb-1">Monolith IV</p>
+<p class="font-label text-sm uppercase tracking-widest opacity-80">Sora Takahashi</p>
+</div>
+</div>
+<!-- Art Piece 4 -->
+<div class="masonry-item art-card group relative cursor-pointer">
+<div class="p-6 bg-surface-container-low">
+<img alt="Minimal landscape" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Minimalist landscape photography of a single lone tree on a snow-covered hill under a soft hazy winter sun." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASPzlTugIniMGzVfP4U8dlYz4QHrKGsG8bPemoT1NyLF889_fNXHSDC68jXT57potn8ti7Z-dNJQH88SyrjTS7xVzJxVg_rsLaDvojPkJ7-mtHsIrmCp9mMt-jK6yOR1anE21pdebjP_OuqDo9BGMF93CbFrG5hepRbTkBL3_RQhK60nMEgkonryRovx7xd2J1lTXaaKILftRvqu8ErihlgSxR4xQvPSGBxzltFcHz4UtO31Rs-KMR-YQUJmlkq5oI1oBO5YRvpQXB"/>
+</div>
+<div class="art-card-overlay absolute inset-0 flex flex-col justify-end p-12 text-on-primary">
+<p class="font-headline text-2xl mb-1">Winter Solitude</p>
+<p class="font-label text-sm uppercase tracking-widest opacity-80">Aris Thorne</p>
+</div>
+</div>
+<!-- Art Piece 5 -->
+<div class="masonry-item art-card group relative cursor-pointer">
+<div class="p-6 bg-surface-container-low">
+<img alt="Majestic valley" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Cinematic wide shot of Yosemite valley at dawn with low hanging mist and soft purple mountain silhouettes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsLCScKR63nPrspn4iPLXMRPU-r-o3lzTP_WKRCwEneaXpVdypI8Hi9TPO-6oHbMNC46UT86QYF7ocF8o0hCGlcnVQsvGUhyReuIv9WW20NfbIcOBYUxe5VyNTiNro3f_sGgCZjJCnwZYPpMA2b5JEW3x2zGfykmxE6vLn24vi-U42yjCEGWFVpQi8o-gLXKNbVLuL-czrGiGtuM7MoHPw3NXnTdKLpOqbbPZK3SYePaRzmu6ispWwHGVuEdYX6HeFxB0pctLuVwQV"/>
+</div>
+<div class="art-card-overlay absolute inset-0 flex flex-col justify-end p-12 text-on-primary">
+<p class="font-headline text-2xl mb-1">Valley Breath</p>
+<p class="font-label text-sm uppercase tracking-widest opacity-80">Julian Grey</p>
+</div>
+</div>
+<!-- Art Piece 6 -->
+<div class="masonry-item art-card group relative cursor-pointer">
+<div class="p-6 bg-surface-container-low">
+<img alt="Abstract canvas" class="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Close-up of a textured oil painting featuring heavy impasto brushstrokes in sage green and creamy white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3p-qxa5EX6P8b8AkXThj33cYeilN3RAoH5mqW1iquweCxf51Z6AZ_7dB3n1PTh925H4crHvpwR8Qc1kqp48BcSYfc2felTZZ0t0CYJfB0oIuF9A5dXwTDLdvZCAxl8VSWqKthEwQyTaV3D0ks08MaSJE0m9rUha-jRLzUn3ZcERfIgzge8jg5aVoB1fAGZat3FUpe5KgtAVIgaUMJOM3kCv3LDKR291tZYksWsWu9Ayi4aFWn6zEJXyRzOOKrIsw4Fr97q6fErMlr"/>
+</div>
+<div class="art-card-overlay absolute inset-0 flex flex-col justify-end p-12 text-on-primary">
+<p class="font-headline text-2xl mb-1">Tactile Silence</p>
+<p class="font-label text-sm uppercase tracking-widest opacity-80">Lena Rossi</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Artist Section (Asymmetric Bento) -->
+<section class="mt-48 px-12 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-5 order-2 md:order-1">
+<span class="font-label text-sm tracking-[0.2em] text-secondary uppercase mb-6 block">Artist in Focus</span>
+<h2 class="font-headline text-5xl tracking-tight mb-8">The Obsidian Series <br/>by Marcus Vahn</h2>
+<p class="font-body text-lg text-on-surface-variant mb-12 leading-relaxed">
+                    Vahn explores the intersection of dark architectural forms and the vulnerability of natural light. His recent work captured in Berlin serves as a meditation on the permanence of the urban environment.
+                </p>
+<a class="inline-block font-headline text-xl text-on-surface border-b border-secondary pb-1 hover:border-on-surface transition-all" href="#">Explore the Collection</a>
+</div>
+<div class="md:col-span-7 order-1 md:order-2">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
+<img alt="Architectural focus" class="w-full h-full object-cover" data-alt="Upward perspective of a modern glass skyscraper reflecting a dramatic sunset with deep orange and blue hues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHmMuiQX4-aienw5-L1cutjzSL_yew8KHWAbAx37UWOtzBTS8G5oVy2TrgGAhWk7jP9CxfpcZJZITH7Cn95Tpy4Ue0yyIrKdUo7T077npxziUNkh7pLFfg_ARaDEI9j40hTEowYn0qN3ZJeYJ_bZQwlWrOIXCq4LMzjSAD_Ehhty8l7cBWxSJJOyQ6IfP1iirW4NoJwwVdGC3KLuIY0moIPMV4f5sSnP2GXX-RbBxrIf_CB6a6SzhqR5qVcMaibK-fBFln8dvAZpMw"/>
+<div class="absolute bottom-8 right-8 bg-surface-container-lowest/80 backdrop-blur-md p-6 max-w-xs">
+<p class="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-2">Exhibition Note</p>
+<p class="font-headline text-lg italic">"Light is not a subject, it is the only subject."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Journal Preview (Horizontal Scroll/Grid) -->
+<section class="mt-48 px-12">
+<div class="flex justify-between items-end mb-16">
+<h2 class="font-headline text-4xl tracking-tight">Gallery Journal</h2>
+<a class="font-label text-sm uppercase tracking-widest text-secondary hover:text-on-surface transition-colors" href="#">Read all entries</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<article class="group">
+<div class="aspect-square bg-surface-container-low mb-8 overflow-hidden">
+<img alt="Journal entry" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Overhead shot of an open vintage sketchbook with charcoal drawings and art supplies on a rustic wooden table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVwBnaCF1IlIsVBov9fAYnZju51MNR2gG4ddaIP5qoDDQtQs8Uc_ornyJnIypl_Cn2cA0UIjd2U5GUVNtAum4HaR9OL3GULIRfH3d-WJnb90MWK_kXvD8-GKNH7O1bmDn35mBWhvj5G0CcWAcafuH-Jol4yPFi9dZKHAnf4Yu8yT56lyVfT3xQmw3PvI9uMxO0QrUJxhtNmSrAZ-02Kbq_yGNtDAShcClw-AyEdJZPSmlvtU_mpscQtv9F1C4otBhYLisMXlnKvA2C"/>
+</div>
+<time class="font-label text-xs uppercase tracking-widest text-on-surface-variant">March 12, 2024</time>
+<h3 class="font-headline text-2xl mt-4 mb-4 group-hover:text-secondary transition-colors">The Resurgence of Film in a Digital Age</h3>
+<p class="font-body text-on-surface-variant leading-relaxed">Exploring why contemporary digital artists are returning to the grain and grit of analog processes.</p>
+</article>
+<article class="group">
+<div class="aspect-square bg-surface-container-low mb-8 overflow-hidden">
+<img alt="Journal entry 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Interior of a bright, modern art gallery with white walls and high ceilings, featuring large-scale abstract canvases." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxo5V-GPzqbWaYyjkRxaZTXn1QcX5m8bknWVXFf188QvzKgvtuytKu71DyYuOgJyhOhf1esuP19mpnYDzSbn0g-ZYcocf_BjGt1EwS-cytMn8ZEb7JshTDwgFv1IRbNvmEWTB0jR7f2ZYDC2-YeBZ8vw81hfRDTfLQ79KozSKkioxfSCkkhIKc7Bj3URdXRHzdj0JRIpb_OGKbQcfNvGiciq1z4kLvGdqUE0zt79PUWzulT-5nfIRiFfcU-auNrEZCFtht0_M1ECaV"/>
+</div>
+<time class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Feb 28, 2024</time>
+<h3 class="font-headline text-2xl mt-4 mb-4 group-hover:text-secondary transition-colors">Curating for the Infinite Canvas</h3>
+<p class="font-body text-on-surface-variant leading-relaxed">A conversation with our lead curator on the challenges of presenting digital art in physical spaces.</p>
+</article>
+<article class="group">
+<div class="aspect-square bg-surface-container-low mb-8 overflow-hidden">
+<img alt="Journal entry 3" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Minimalist living room with neutral colors, clean lines, and a single striking piece of modern art on the wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdCdVO0qv9UAe0hllWhHDegdNcNnG2mxElS64GzwBuP6uMm_rHT3HkKf_KqR-NUDh0UEU3gLl_Br5CwuRz51m9kRf1ZgOrDRIF3eB6l3vSuRSnWHVx6LloRV7Cm3k_obhOOioS2MqiPpfrw87JjTNhL6EIjSA27AzFjMx_ebQnL0opv-rkfjhenvZVNm62P33qcKZW3ephEhX8IpDes3R3BUYtxrONjZNvqWyQSXHxeeVFkAgevMQLHx0_XnxJQI8HxlobY7D4YHwZ"/>
+</div>
+<time class="font-label text-xs uppercase tracking-widest text-on-surface-variant">Feb 14, 2024</time>
+<h3 class="font-headline text-2xl mt-4 mb-4 group-hover:text-secondary transition-colors">Art as a Sanctuary</h3>
+<p class="font-body text-on-surface-variant leading-relaxed">How minimalist art and curated spaces contribute to mental clarity and residential well-being.</p>
+</article>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-20 px-12 border-t border-on-surface/5 bg-surface-container-low flex flex-col md:flex-row justify-between items-start space-y-8 md:space-y-0">
+<div>
+<p class="font-noto-serif text-xl text-on-surface mb-6">The Digital Gallery</p>
+<p class="font-manrope text-sm tracking-wide uppercase text-on-surface-variant">© 2024 The Digital Gallery. All rights reserved.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-4">
+<a class="font-manrope text-sm tracking-wide uppercase text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">Privacy Policy</a>
+<a class="font-manrope text-sm tracking-wide uppercase text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">Terms of Service</a>
+<a class="font-manrope text-sm tracking-wide uppercase text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">Contact Us</a>
+<a class="font-manrope text-sm tracking-wide uppercase text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">Instagram</a>
+<a class="font-manrope text-sm tracking-wide uppercase text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">Twitter</a>
+</div>
+</footer>
+</body></html>
