@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   DndContext,
   closestCenter,
@@ -189,6 +189,12 @@ export default function SortableAlbumList({
   initialAlbums: Album[];
 }) {
   const [albums, setAlbums] = useState(initialAlbums);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -224,6 +230,55 @@ export default function SortableAlbumList({
   async function handleDelete(id: string) {
     setAlbums((prev) => prev.filter((a) => a.id !== id));
     await fetch(`/api/admin/albums/${id}`, { method: "DELETE" });
+  }
+
+  if (!mounted) {
+    return (
+      <div className="space-y-4">
+        {albums.map((album) => (
+          <div
+            key={album.id}
+            className="bg-surface-container-lowest p-6 flex items-center gap-6"
+          >
+            <div className="w-5 h-5 flex-shrink-0" />
+            <div className="w-20 h-20 bg-surface-container-low flex-shrink-0 relative overflow-hidden">
+              {album.coverImage ? (
+                <Image
+                  src={album.coverImage}
+                  alt={album.title}
+                  fill
+                  className="object-cover"
+                  sizes="80px"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-on-surface-variant/30">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1}
+                    stroke="currentColor"
+                    className="w-8 h-8"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z"
+                    />
+                  </svg>
+                </div>
+              )}
+            </div>
+            <div className="flex-grow">
+              <h3 className="font-headline text-xl">{album.title}</h3>
+              <p className="text-sm text-on-surface-variant">
+                {album._count.artworks} Werke &middot; /{album.slug}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   }
 
   return (
