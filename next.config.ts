@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
   },
   serverExternalPackages: ["sharp"],
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "5mb",
+    },
+  },
 };
 
 export default nextConfig;

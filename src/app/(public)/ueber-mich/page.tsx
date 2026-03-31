@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "Über mich",
@@ -21,25 +22,26 @@ export default async function UeberMichPage() {
 
       {/* Main Content: Asymmetric Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-start">
-        {/* Left Side: Portrait */}
+        {/* Left Side: Portrait & Biography */}
         <section className="lg:col-span-5 space-y-12">
           <div className="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
-            {page?.heroImage ? (
-              <Image
-                src={page.heroImage}
-                alt="Michael Hein"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                priority
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-on-surface-variant/20">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-24 h-24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                </svg>
-              </div>
-            )}
+            <Image
+              src="/Profilbild.jpg"
+              alt="Michael Hein"
+              fill
+              className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              priority
+            />
+          </div>
+
+          {/* Biography Text */}
+          <div className="space-y-6">
+            {page?.content?.split("\n\n").map((paragraph, i) => (
+              <p key={i} className="font-body text-lg text-on-surface-variant leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
           </div>
 
           {/* Fine Details */}
@@ -55,14 +57,14 @@ export default async function UeberMichPage() {
           </div>
         </section>
 
-        {/* Right Side: Biography */}
-        <section className="lg:col-span-7 space-y-0">
-          <div>
-            {page?.content?.split("\n\n").map((paragraph, i) => (
-              <p key={i} className="font-body text-base md:text-lg text-on-surface-variant leading-relaxed mb-8 last:mb-0">
-                {paragraph}
-              </p>
-            ))}
+        {/* Right Side: Contact Form */}
+        <section id="kontakt" className="lg:col-span-7 bg-surface-container-low p-8 md:p-16 scroll-mt-36">
+          <div className="max-w-xl">
+            <h3 className="font-headline text-3xl mb-4">Kontakt</h3>
+            <p className="font-body text-on-surface-variant mb-12">
+              Für Anfragen zu Kunstwerken, Auftragsarbeiten oder Ausstellungen nutzen Sie bitte das folgende Formular.
+            </p>
+            <ContactForm />
           </div>
         </section>
       </div>

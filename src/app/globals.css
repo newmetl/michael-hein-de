@@ -176,3 +176,50 @@ body {
 .gallery-link:hover {
   border-color: var(--color-on-surface);
 }
+
+/* ========================
+   Floating Label Inputs
+   ======================== */
+.floating-input {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-outline);
+  padding: 0.5rem 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-on-surface);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.floating-input:focus {
+  border-bottom-color: var(--color-secondary);
+  box-shadow: none;
+}
+
+.floating-input::placeholder {
+  color: transparent;
+}
+
+.floating-label {
+  position: absolute;
+  left: 0;
+  top: -0.875rem;
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  color: var(--color-on-surface-variant);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.peer:placeholder-shown ~ .floating-label {
+  top: 0.5rem;
+  font-size: 1rem;
+}
+
+.peer:focus ~ .floating-label {
+  top: -0.875rem;
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+}

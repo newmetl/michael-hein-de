@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import MarkdownEditor from "./MarkdownEditor";
 
 export default async function SeitenPage() {
   const pages = await prisma.page.findMany({
@@ -19,6 +20,10 @@ export default async function SeitenPage() {
     });
 
     revalidatePath("/admin/seiten");
+    revalidatePath("/");
+    revalidatePath("/ueber-mich");
+    revalidatePath("/impressum");
+    revalidatePath("/datenschutz");
   }
 
   const pageLabels: Record<string, string> = {
@@ -75,12 +80,7 @@ export default async function SeitenPage() {
               <label className="block font-label text-xs uppercase tracking-widest text-on-surface-variant mb-2">
                 Inhalt (Markdown)
               </label>
-              <textarea
-                name="content"
-                rows={10}
-                defaultValue={page.content}
-                className="w-full bg-transparent border border-outline/20 p-4 focus:ring-0 focus:border-secondary transition-colors resize-y font-mono text-sm"
-              />
+              <MarkdownEditor name="content" defaultValue={page.content} />
             </div>
 
             <button

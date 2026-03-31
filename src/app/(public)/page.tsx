@@ -183,6 +183,35 @@ export default async function HomePage() {
           </div>
         </section>
       )}
+
+      {/* Contact CTA Section */}
+      <section className="mt-36 md:mt-48 px-6 md:px-12">
+        <div className="bg-surface-container-low p-12 md:p-20 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+          <div className="md:col-span-7">
+            <span className="font-label text-xs uppercase tracking-[0.2em] text-secondary mb-6 block">
+              Kontakt
+            </span>
+            <h2 className="font-headline text-4xl md:text-5xl tracking-editorial mb-8 leading-tight">
+              Interesse an einem <span className="italic">Werk?</span>
+            </h2>
+            <p className="font-body text-lg text-on-surface-variant leading-relaxed max-w-lg">
+              Für Anfragen zu Kunstwerken, Auftragsarbeiten oder Ausstellungen
+              stehe ich Ihnen gerne zur Verfügung.
+            </p>
+          </div>
+          <div className="md:col-span-5 flex md:justify-end">
+            <Link
+              href="/ueber-mich#kontakt"
+              className="btn-primary inline-flex items-center gap-3"
+            >
+              Nachricht senden
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
