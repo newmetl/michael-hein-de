@@ -2,7 +2,8 @@ import sharp from "sharp";
 import path from "path";
 import fs from "fs/promises";
 
-const UPLOAD_DIR = path.join(process.cwd(), "public/uploads");
+const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), "data");
+const UPLOAD_DIR = path.join(DATA_DIR, "uploads");
 
 export async function processImage(file: File): Promise<{
   originalPath: string;
@@ -39,9 +40,9 @@ export async function processImage(file: File): Promise<{
     .toFile(path.join(UPLOAD_DIR, "thumb", thumbFilename));
 
   return {
-    originalPath: `/uploads/original/${originalFilename}`,
-    displayPath: `/uploads/display/${displayFilename}`,
-    thumbPath: `/uploads/thumb/${thumbFilename}`,
+    originalPath: `/api/uploads/original/${originalFilename}`,
+    displayPath: `/api/uploads/display/${displayFilename}`,
+    thumbPath: `/api/uploads/thumb/${thumbFilename}`,
   };
 }
 

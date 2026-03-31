@@ -39,8 +39,12 @@ COPY --from=builder /app/public ./public
 # 3. Prisma schema + migrations
 COPY --from=builder /app/prisma ./prisma
 
+# 4. Data directory for uploads (volume-mounted at runtime)
+RUN mkdir -p /app/data && chown nextjs:nodejs /app/data
+
 USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
-CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
+ENV DATA_DIR="/app/data"
+CMD ["sh", "-c", "mkdir -p /app/data/uploads/original /app/data/uploads/display /app/data/uploads/thumb && npx prisma migrate deploy && node server.js"]
