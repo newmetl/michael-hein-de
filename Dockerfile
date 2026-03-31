@@ -28,17 +28,21 @@ RUN apk add --no-cache openssl \
     && addgroup --system --gid 1001 nodejs \
     && adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/prisma ./prisma
+# 1. Standalone Next.js output (base layer)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
 
-# Prisma CLI + client needed for runtime migrations
+# 2. Prisma: schema, migrations, ensure-pages script (overwrites standalone's prisma/)
+COPY --from=builder /app/prisma ./prisma
+
+# 3. Prisma CLI + client for runtime migrations
 COPY --from=deps /app/node_modules/prisma ./node_modules/prisma
 COPY --from=deps /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
-COPY start.sh ./start.sh
+# 4. Startup script (AFTER standalone copy so it doesn't get overwritten)
+COPY --from=builder /app/start.sh ./start.sh
 RUN chmod +x start.sh
 
 USER nextjs
