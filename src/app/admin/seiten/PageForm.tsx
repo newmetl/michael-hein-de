@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useTransition, useState, useEffect } from "react";
 import MarkdownEditor from "./MarkdownEditor";
 
 type Page = {
@@ -19,27 +19,27 @@ export default function PageForm({
 }: {
   page: Page;
   label: string;
-  action: (
-    state: { success: boolean; timestamp: number },
-    formData: FormData
-  ) => Promise<{ success: boolean; timestamp: number }>;
+  action: (formData: FormData) => Promise<void>;
 }) {
-  const [state, formAction, isPending] = useActionState(action, {
-    success: false,
-    timestamp: 0,
-  });
+  const [isPending, startTransition] = useTransition();
   const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
-    if (state.success && state.timestamp > 0) {
-      setShowSuccess(true);
+    if (showSuccess) {
       const timer = setTimeout(() => setShowSuccess(false), 3000);
       return () => clearTimeout(timer);
     }
-  }, [state.success, state.timestamp]);
+  }, [showSuccess]);
+
+  function handleSubmit(formData: FormData) {
+    startTransition(async () => {
+      await action(formData);
+      setShowSuccess(true);
+    });
+  }
 
   return (
-    <form action={formAction} className="bg-surface-container-lowest p-8">
+    <form action={handleSubmit} className="bg-surface-container-lowest p-8">
       <input type="hidden" name="id" value={page.id} />
       <h2 className="font-headline text-xl mb-6">{label}</h2>
 

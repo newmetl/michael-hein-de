@@ -7,10 +7,7 @@ export default async function SeitenPage() {
     orderBy: { key: "asc" },
   });
 
-  async function updatePage(
-    _prev: { success: boolean; timestamp: number },
-    formData: FormData
-  ) {
+  async function updatePage(formData: FormData) {
     "use server";
     const id = formData.get("id") as string;
     const content = formData.get("content") as string;
@@ -27,8 +24,6 @@ export default async function SeitenPage() {
     revalidatePath("/ueber-mich");
     revalidatePath("/impressum");
     revalidatePath("/datenschutz");
-
-    return { success: true, timestamp: Date.now() };
   }
 
   const pageLabels: Record<string, string> = {
