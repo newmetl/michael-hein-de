@@ -33,19 +33,15 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# 2. Prisma: schema, migrations, ensure-pages script
+# 2. Prisma: schema + migrations for runtime migrate deploy
 COPY --from=builder /app/prisma ./prisma
 
-# 3. Prisma CLI for runtime migrations + @prisma/client for ensure-pages script
+# 3. Prisma CLI for runtime migrations
 COPY --from=deps /app/node_modules/prisma ./node_modules/prisma
 COPY --from=deps /app/node_modules/@prisma ./node_modules/@prisma
-
-# 4. Startup script
-COPY --from=builder /app/start.sh ./start.sh
-RUN chmod +x start.sh
 
 USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
-CMD ["sh", "start.sh"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
