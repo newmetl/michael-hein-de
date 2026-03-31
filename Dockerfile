@@ -28,16 +28,16 @@ RUN apk add --no-cache openssl \
     && addgroup --system --gid 1001 nodejs \
     && adduser --system --uid 1001 nextjs
 
-# 1. Standalone Next.js output
+# 1. Full node_modules from deps (for prisma CLI at runtime)
+COPY --from=deps /app/node_modules ./node_modules
+
+# 2. Standalone Next.js output ON TOP (overwrites node_modules partially with generated client)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# 2. Prisma schema + migrations
+# 3. Prisma schema + migrations
 COPY --from=builder /app/prisma ./prisma
-
-# 3. Full node_modules for prisma CLI at runtime (pnpm symlinks require complete tree)
-COPY --from=deps /app/node_modules ./node_modules
 
 USER nextjs
 EXPOSE 3000
