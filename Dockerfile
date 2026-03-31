@@ -28,20 +28,19 @@ RUN apk add --no-cache openssl \
     && addgroup --system --gid 1001 nodejs \
     && adduser --system --uid 1001 nextjs
 
-# 1. Standalone Next.js output (includes bundled prisma client)
+# 1. Standalone Next.js output
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# 2. Prisma: schema + migrations for runtime migrate deploy
+# 2. Prisma schema + migrations
 COPY --from=builder /app/prisma ./prisma
 
-# 3. Prisma CLI for runtime migrations
-COPY --from=deps /app/node_modules/prisma ./node_modules/prisma
-COPY --from=deps /app/node_modules/@prisma ./node_modules/@prisma
+# 3. Full node_modules for prisma CLI at runtime (pnpm symlinks require complete tree)
+COPY --from=deps /app/node_modules ./node_modules
 
 USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
-CMD ["sh", "-c", "node node_modules/prisma/build/index.js migrate deploy && node server.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node server.js"]
