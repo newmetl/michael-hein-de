@@ -26,7 +26,7 @@ export default async function UeberMichPage() {
         <section className="lg:col-span-5 space-y-12">
           <div className="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
             <Image
-              src="/Profilbild.jpg"
+              src={page?.heroImage || "/Profilbild.jpg"}
               alt="Michael Hein"
               fill
               className="object-cover grayscale hover:grayscale-0 transition-all duration-700"

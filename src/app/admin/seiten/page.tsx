@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { processImage } from "@/lib/upload";
 import { revalidatePath } from "next/cache";
 import PageForm from "./PageForm";
 
@@ -14,9 +15,17 @@ export default async function SeitenPage() {
     const heroTitle = (formData.get("heroTitle") as string) || null;
     const heroSubtitle = (formData.get("heroSubtitle") as string) || null;
 
+    const data: Record<string, unknown> = { content, heroTitle, heroSubtitle };
+
+    const profileImage = formData.get("profileImage") as File | null;
+    if (profileImage && profileImage.size > 0) {
+      const result = await processImage(profileImage);
+      data.heroImage = result.displayPath;
+    }
+
     await prisma.page.update({
       where: { id },
-      data: { content, heroTitle, heroSubtitle },
+      data,
     });
 
     revalidatePath("/admin/seiten");
