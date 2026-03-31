@@ -1,37 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Noto Serif";
-  src: url("/fonts/NotoSerif-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Noto Serif";
-  src: url("/fonts/NotoSerif-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Noto Serif";
-  src: url("/fonts/NotoSerif-Italic.woff2") format("woff2");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Manrope";
-  src: url("/fonts/Manrope-Variable.woff2") format("woff2");
-  font-weight: 300 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --color-surface: #f9f9f9;
   --color-surface-container-low: #f2f4f4;
@@ -51,9 +19,9 @@
   --color-error: #9f403d;
   --color-inverse-surface: #0c0f0f;
 
-  --font-headline: "Noto Serif", serif;
-  --font-body: "Manrope", sans-serif;
-  --font-label: "Manrope", sans-serif;
+  --font-headline: var(--font-noto-serif), serif;
+  --font-body: var(--font-manrope), sans-serif;
+  --font-label: var(--font-manrope), sans-serif;
 
   --radius-DEFAULT: 0px;
   --radius-lg: 0px;
@@ -62,6 +30,7 @@
 
 body {
   font-family: var(--font-body);
+  font-weight: 400;
   background-color: var(--color-surface);
   color: var(--color-on-surface);
   -webkit-font-smoothing: antialiased;
@@ -72,13 +41,24 @@ body {
   background-color: rgb(102 94 76 / 0.3);
 }
 
+/* ========================
+   Glass Navigation
+   ======================== */
 .glass-nav {
   background-color: rgb(249 249 249 / 0.7);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
+/* ========================
+   Art Card Hover Overlay
+   ======================== */
 .art-card-overlay {
-  background: linear-gradient(to top, rgba(45, 52, 53, 0.8) 0%, rgba(45, 52, 53, 0) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(45, 52, 53, 0.8) 0%,
+    rgba(45, 52, 53, 0) 100%
+  );
   opacity: 0;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -87,6 +67,34 @@ body {
   opacity: 1;
 }
 
+/* ========================
+   Masonry Grid
+   ======================== */
+.masonry-grid {
+  column-count: 1;
+  column-gap: 2.75rem;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1280px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 2.75rem;
+}
+
+/* ========================
+   Animations
+   ======================== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -100,4 +108,71 @@ body {
 
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* ========================
+   Typography Utilities
+   ======================== */
+.tracking-editorial {
+  letter-spacing: -0.02em;
+}
+
+/* ========================
+   Image Matting Effect
+   ======================== */
+.art-mat {
+  padding: 1.5rem;
+  background-color: var(--color-surface-container-low);
+}
+
+@media (min-width: 768px) {
+  .art-mat {
+    padding: 3rem;
+  }
+}
+
+/* ========================
+   Ambient Shadow
+   ======================== */
+.shadow-ambient {
+  box-shadow: 0px 24px 48px rgba(45, 52, 53, 0.06);
+}
+
+/* ========================
+   Ghost Border
+   ======================== */
+.ghost-border {
+  border: 1px solid rgb(173 179 180 / 0.15);
+}
+
+/* ========================
+   Primary Gradient Button
+   ======================== */
+.btn-primary {
+  background: linear-gradient(to right, var(--color-primary), var(--color-primary-dim));
+  color: var(--color-on-primary);
+  padding: 1.25rem 2rem;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* ========================
+   Gallery Link (Tertiary Button)
+   ======================== */
+.gallery-link {
+  font-family: var(--font-headline);
+  border-bottom: 1px solid var(--color-secondary);
+  padding-bottom: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.gallery-link:hover {
+  border-color: var(--color-on-surface);
 }

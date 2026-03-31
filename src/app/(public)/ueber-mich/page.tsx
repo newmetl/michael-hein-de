@@ -12,13 +12,16 @@ export default async function UeberMichPage() {
 
   return (
     <div className="px-6 md:px-12 max-w-7xl mx-auto">
+      {/* Hero Header */}
       <header className="mb-20 md:mb-32">
-        <h1 className="font-headline text-5xl md:text-7xl tracking-tighter text-on-surface max-w-3xl leading-tight">
+        <h1 className="font-headline text-5xl md:text-7xl lg:text-[5.5rem] tracking-editorial text-on-surface max-w-4xl leading-[1.05]">
           Über <span className="italic font-normal">Michael Hein</span>
         </h1>
       </header>
 
+      {/* Main Content: Asymmetric Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 items-start">
+        {/* Left Side: Portrait */}
         <section className="lg:col-span-5 space-y-12">
           <div className="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
             {page?.heroImage ? (
@@ -38,12 +41,25 @@ export default async function UeberMichPage() {
               </div>
             )}
           </div>
+
+          {/* Fine Details */}
+          <div className="pt-8 border-t border-outline-variant/20 space-y-6">
+            <div>
+              <p className="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-3">Standort</p>
+              <p className="font-headline text-lg">Konstanz, Süddeutschland</p>
+            </div>
+            <div>
+              <p className="font-label text-xs uppercase tracking-widest text-on-surface-variant mb-3">Schwerpunkte</p>
+              <p className="font-headline text-lg italic">Kunstobjekte, Fotografie, Mixed Media</p>
+            </div>
+          </div>
         </section>
 
-        <section className="lg:col-span-7 space-y-8">
-          <div className="prose prose-lg max-w-none">
+        {/* Right Side: Biography */}
+        <section className="lg:col-span-7 space-y-0">
+          <div>
             {page?.content?.split("\n\n").map((paragraph, i) => (
-              <p key={i} className="text-lg text-on-surface-variant leading-relaxed mb-6">
+              <p key={i} className="font-body text-base md:text-lg text-on-surface-variant leading-relaxed mb-8 last:mb-0">
                 {paragraph}
               </p>
             ))}
