@@ -25,14 +25,22 @@ export default async function UeberMichPage() {
         {/* Left Side: Portrait & Biography */}
         <section className="lg:col-span-5 space-y-12">
           <div className="relative aspect-[4/5] bg-surface-container-low overflow-hidden">
-            <Image
-              src={page?.heroImage || "/Profilbild.jpg"}
-              alt="Michael Hein"
-              fill
-              className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              priority
-            />
+            {page?.heroImage ? (
+              <Image
+                src={page.heroImage}
+                alt="Michael Hein"
+                fill
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                priority
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-on-surface-variant/30">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-24 h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={0.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+            )}
           </div>
 
           {/* Biography Text */}
