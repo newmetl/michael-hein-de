@@ -13,10 +13,12 @@ RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ENV PRISMA_ENGINES_MIRROR="https://binaries.prisma.sh"
+ENV DATABASE_URL="file:/app/build.db"
 RUN corepack enable pnpm \
     && npx prisma generate \
-    && pnpm build
+    && npx prisma migrate deploy \
+    && pnpm build \
+    && rm -f /app/build.db
 
 # --- Production ---
 FROM base AS runner
