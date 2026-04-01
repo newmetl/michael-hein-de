@@ -31,24 +31,6 @@ export default async function GaleriePage({
 
   const totalPages = Math.ceil(total / perPage);
 
-  // Bento layout: first album large, second offset, then alternating sizes
-  const getGridClass = (index: number): string => {
-    if (index === 0) return "md:col-span-8";
-    if (index === 1) return "md:col-span-4 md:pt-24";
-    if (index === 2) return "md:col-span-4";
-    if (index === 3) return "md:col-span-8";
-    // Remaining: uniform 4-column grid
-    return "md:col-span-4";
-  };
-
-  const getAspect = (index: number): string => {
-    if (index === 0) return "aspect-[16/9]";
-    if (index === 1) return "aspect-[4/5]";
-    if (index === 2) return "aspect-[4/5]";
-    if (index === 3) return "aspect-[21/9]";
-    return "aspect-square";
-  };
-
   return (
     <div className="px-6 md:px-12 max-w-[1600px] mx-auto">
       {/* Hero */}
@@ -68,25 +50,26 @@ export default async function GaleriePage({
         </div>
       </section>
 
-      {/* Bento Grid */}
-      <section className="grid grid-cols-1 md:grid-cols-12 gap-12">
-        {albums.map((album, index) => (
+      {/* Masonry Grid */}
+      <section className="columns-1 md:columns-2 lg:columns-3 gap-12 [column-fill:balance]">
+        {albums.map((album) => (
           <Link
             key={album.id}
             href={`/galerie/${album.slug}`}
-            className={`${getGridClass(index)} group cursor-pointer`}
+            className="group cursor-pointer break-inside-avoid mb-12 block"
           >
-            <div className={`${getAspect(index)} bg-surface-container-low overflow-hidden relative`}>
+            <div className="bg-surface-container-low overflow-hidden relative">
               {album.coverImage ? (
                 <Image
                   src={album.coverImage}
                   alt={album.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes={index === 0 || index === 3 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+                  width={800}
+                  height={800}
+                  className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-on-surface-variant/20">
+                <div className="w-full aspect-[4/3] flex items-center justify-center text-on-surface-variant/20">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-16 h-16">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0 0 22.5 18.75V5.25A2.25 2.25 0 0 0 20.25 3H3.75A2.25 2.25 0 0 0 1.5 5.25v13.5A2.25 2.25 0 0 0 3.75 21Z" />
                   </svg>
@@ -96,7 +79,7 @@ export default async function GaleriePage({
             </div>
             <div className="mt-6 flex justify-between items-start">
               <div>
-                <h2 className={`font-headline ${index === 0 || index === 3 ? "text-3xl" : "text-2xl"} mb-2 group-hover:text-secondary transition-colors`}>
+                <h2 className="font-headline text-2xl mb-2 group-hover:text-secondary transition-colors">
                   {album.title}
                 </h2>
                 {album.description && (
