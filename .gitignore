@@ -53,3 +53,4 @@ public/uploads/thumb/*
 !public/uploads/original/.gitkeep
 !public/uploads/display/.gitkeep
 !public/uploads/thumb/.gitkeep
+data

@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ albumSlug: string; artworkSlug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

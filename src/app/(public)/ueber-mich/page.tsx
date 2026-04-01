@@ -3,6 +3,8 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { ContactForm } from "./ContactForm";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Über mich",
   description: "Erfahren Sie mehr über Michael Hein und seine Arbeit.",
