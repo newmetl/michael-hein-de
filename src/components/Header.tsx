@@ -88,7 +88,7 @@ function MobileMenu() {
           />
         </svg>
       </label>
-      <div className="fixed inset-0 bg-surface z-50 hidden peer-checked:flex flex-col items-center justify-center space-y-10">
+      <div className="fixed inset-0 bg-white z-50 hidden peer-checked:flex flex-col items-center justify-center space-y-10">
         <label
           htmlFor="mobile-menu"
           className="absolute top-5 right-6 cursor-pointer p-2"
