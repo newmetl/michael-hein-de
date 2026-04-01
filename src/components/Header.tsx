@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -65,11 +66,12 @@ function NavLink({
 }
 
 function MobileMenu() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="md:hidden">
-      <input type="checkbox" id="mobile-menu" className="hidden peer" />
-      <label
-        htmlFor="mobile-menu"
+    <div className="md:hidden ml-auto">
+      <button
+        onClick={() => setOpen(true)}
         className="cursor-pointer p-2 text-on-surface"
         aria-label="Menü öffnen"
       >
@@ -87,41 +89,43 @@ function MobileMenu() {
             d="M3.75 9h16.5m-16.5 6.75h16.5"
           />
         </svg>
-      </label>
-      <div className="fixed inset-0 bg-white z-50 hidden peer-checked:flex flex-col items-center justify-center space-y-10">
-        <label
-          htmlFor="mobile-menu"
-          className="absolute top-5 right-6 cursor-pointer p-2"
-          aria-label="Menü schließen"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6"
+      </button>
+      {open && (
+        <div className="fixed inset-0 h-dvh bg-white z-50 flex flex-col items-center justify-center space-y-10">
+          <button
+            onClick={() => setOpen(false)}
+            className="absolute top-5 right-6 cursor-pointer p-2"
+            aria-label="Menü schließen"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </label>
-        <Link href="/" className="font-headline text-2xl text-on-surface">
-          Start
-        </Link>
-        <Link href="/galerie" className="font-headline text-2xl text-on-surface">
-          Galerie
-        </Link>
-        <Link href="/ueber-mich" className="font-headline text-2xl text-on-surface">
-          Über mich
-        </Link>
-        <Link href="/ueber-mich#kontakt" className="font-headline text-2xl text-secondary">
-          Kontakt
-        </Link>
-      </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+          <Link href="/" onClick={() => setOpen(false)} className="font-headline text-2xl text-on-surface">
+            Start
+          </Link>
+          <Link href="/galerie" onClick={() => setOpen(false)} className="font-headline text-2xl text-on-surface">
+            Galerie
+          </Link>
+          <Link href="/ueber-mich" onClick={() => setOpen(false)} className="font-headline text-2xl text-on-surface">
+            Über mich
+          </Link>
+          <Link href="/ueber-mich#kontakt" onClick={() => setOpen(false)} className="font-headline text-2xl text-secondary">
+            Kontakt
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
