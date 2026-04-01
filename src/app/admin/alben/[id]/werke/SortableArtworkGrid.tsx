@@ -26,6 +26,7 @@ type Artwork = {
   title: string;
   imagePath: string;
   thumbPath: string | null;
+  featured: boolean;
 };
 
 type AlbumOption = {
@@ -41,6 +42,7 @@ function SortableArtworkItem({
   onSetCover,
   onDelete,
   onMove,
+  onToggleFeatured,
 }: {
   artwork: Artwork;
   albumId: string;
@@ -49,6 +51,7 @@ function SortableArtworkItem({
   onSetCover: (imagePath: string) => void;
   onDelete: (id: string) => void;
   onMove: (artworkId: string, targetAlbumId: string) => void;
+  onToggleFeatured: (id: string) => void;
 }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [showMove, setShowMove] = useState(false);
@@ -100,10 +103,19 @@ function SortableArtworkItem({
           className="object-cover"
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
         />
-        {isCover && (
-          <span className="absolute top-2 left-2 bg-secondary text-on-secondary px-2 py-1 text-[10px] uppercase tracking-widest">
-            Cover
-          </span>
+        {(isCover || artwork.featured) && (
+          <div className="absolute top-2 left-2 flex gap-1">
+            {isCover && (
+              <span className="bg-secondary text-on-secondary px-2 py-1 text-[10px] uppercase tracking-widest">
+                Cover
+              </span>
+            )}
+            {artwork.featured && (
+              <span className="bg-primary text-on-primary px-2 py-1 text-[10px] uppercase tracking-widest">
+                Featured
+              </span>
+            )}
+          </div>
         )}
       </div>
       <div className="mt-3">
@@ -123,6 +135,17 @@ function SortableArtworkItem({
             className="text-[10px] tracking-widest uppercase border border-outline/20 px-3 py-1 hover:bg-surface-container-low transition-all"
           >
             Als Cover
+          </button>
+          <button
+            type="button"
+            onClick={() => onToggleFeatured(artwork.id)}
+            className={`text-[10px] tracking-widest uppercase border px-3 py-1 transition-all ${
+              artwork.featured
+                ? "border-primary/40 text-primary bg-primary/5 hover:bg-primary/10"
+                : "border-outline/20 hover:bg-surface-container-low"
+            }`}
+          >
+            {artwork.featured ? "★ Featured" : "☆ Featured"}
           </button>
           {albums.length > 0 && (
             <button
@@ -235,6 +258,15 @@ export default function SortableArtworkGrid({
     await fetch(`/api/admin/artworks/${id}`, { method: "DELETE" });
   }
 
+  async function handleToggleFeatured(id: string) {
+    setArtworks((prev) =>
+      prev.map((a) =>
+        a.id === id ? { ...a, featured: !a.featured } : a
+      )
+    );
+    await fetch(`/api/admin/artworks/${id}/toggle-featured`, { method: "PUT" });
+  }
+
   async function handleMove(artworkId: string, targetAlbumId: string) {
     setArtworks((prev) => prev.filter((a) => a.id !== artworkId));
     await fetch(`/api/admin/artworks/${artworkId}/move`, {
@@ -246,6 +278,7 @@ export default function SortableArtworkGrid({
 
   return (
     <DndContext
+      id="artwork-grid"
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
@@ -265,6 +298,7 @@ export default function SortableArtworkGrid({
               onSetCover={handleSetCover}
               onDelete={handleDelete}
               onMove={handleMove}
+              onToggleFeatured={handleToggleFeatured}
             />
           ))}
         </div>

@@ -4,24 +4,33 @@ import Image from "next/image";
 
 export default async function HomePage() {
   const page = await prisma.page.findUnique({ where: { key: "home" } });
-  const albums = await prisma.album.findMany({
-    where: { published: true },
-    orderBy: { sortOrder: "asc" },
-    include: {
-      _count: { select: { artworks: true } },
-      artworks: {
-        where: { published: true },
-        orderBy: { sortOrder: "asc" },
-        take: 6,
+  const [albums, featuredArtworksRaw] = await Promise.all([
+    prisma.album.findMany({
+      where: { published: true },
+      orderBy: { sortOrder: "asc" },
+      include: {
+        _count: { select: { artworks: true } },
+        artworks: {
+          where: { published: true },
+          orderBy: { sortOrder: "asc" },
+          take: 6,
+        },
       },
-    },
-    take: 6,
-  });
+      take: 6,
+    }),
+    prisma.artwork.findMany({
+      where: { featured: true, published: true, album: { published: true } },
+      orderBy: { sortOrder: "asc" },
+      include: { album: { select: { slug: true, title: true } } },
+    }),
+  ]);
 
-  // Collect featured artworks from all albums for the masonry grid
-  const featuredArtworks = albums.flatMap((album) =>
-    album.artworks.map((artwork) => ({ ...artwork, albumSlug: album.slug, albumTitle: album.title }))
-  ).slice(0, 6);
+  // All featured artworks for the masonry grid (no limit)
+  const featuredArtworks = featuredArtworksRaw.map((artwork) => ({
+    ...artwork,
+    albumSlug: artwork.album.slug,
+    albumTitle: artwork.album.title,
+  }));
 
   // First album as featured
   const featuredAlbum = albums[0];
